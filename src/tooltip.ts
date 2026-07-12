@@ -93,7 +93,7 @@ export function showAboutModal(): void {
       <h3>Update frequency</h3>
       <p>The ABS national dataset is updated annually. State-level data from BOCSAR (NSW) is updated quarterly. A data pipeline refreshes this site weekly when new data is available.</p>
 
-      <p class="text-secondary" style="margin-top:var(--space-xl)">Built by <a href="https://benrichardson.dev/" target="_blank" rel="noopener">benrichardson.dev</a> · <a href="https://hub.benrichardson.dev" target="_blank" rel="noopener">more tools &amp; sites</a></p>
+      <p class="text-secondary" style="margin-top:var(--space-xl)">Built by <a href="https://benrichardson.dev/" target="_blank" rel="noopener">benrichardson.dev</a> · <a href="https://sites.benrichardson.dev" target="_blank" rel="noopener">more tools &amp; sites</a></p>
     </div>
   `;
   document.body.appendChild(aboutModalEl);
