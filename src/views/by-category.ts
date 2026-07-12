@@ -58,12 +58,13 @@ export function renderByCategory(container: HTMLElement, categoryId?: string): v
           ${stateRates.map(s => {
             const pct = maxRate > 0 ? (s.rate / maxRate) * 100 : 0;
             const medPct = maxRate > 0 ? (medianRate / maxRate) * 100 : 0;
+            const tip = `${STATE_NAMES[s.state]} — ${cat.label} (${LATEST_YEAR}): ${formatRate(s.rate)} per 100K — ${formatNumber(s.count)} offences, ${formatPercent(s.yoy)} YoY`;
             return `
               <div class="bar-row clickable-row" data-state="${s.state}">
                 <div class="bar-label">${s.state}</div>
-                <div class="bar-track" style="position:relative">
+                <div class="bar-track" style="position:relative" data-tip="${tip}" aria-label="${tip}">
                   <div class="bar-fill" style="width:${pct}%;background:${STATE_COLORS[s.state]}"></div>
-                  <div class="median-line" style="left:${medPct}%" title="Median: ${formatRate(medianRate)}"></div>
+                  <div class="median-line" style="left:${medPct}%" data-tip="Median: ${formatRate(medianRate)} per 100K" aria-label="Median: ${formatRate(medianRate)} per 100K"></div>
                 </div>
                 <div class="bar-value">
                   <span class="mono">${formatRate(s.rate)}</span>

@@ -110,7 +110,7 @@ function renderStateLeaderboard(el: HTMLElement): void {
               <td class="mono">${formatNumber(e.population)}</td>
               <td class="mono">${formatNumber(e.count)}</td>
               <td class="mono"><strong>${formatRate(e.rate, 0)}</strong></td>
-              <td class="bar-cell">
+              <td class="bar-cell" data-tip="${e.name} — ${catLabel} (${LATEST_YEAR}): ${formatRate(e.rate, 0)} per 100K — ${formatNumber(e.count)} offences" aria-label="${e.name} — ${catLabel} (${LATEST_YEAR}): ${formatRate(e.rate, 0)} per 100K — ${formatNumber(e.count)} offences">
                 <div class="mini-bar" style="width:${pct}%;background:${STATE_COLORS[e.code]}"></div>
               </td>
               <td class="mono ${e.yoy > 0 ? 'change-up' : 'change-down'}">${formatPercent(e.yoy)}</td>
@@ -170,7 +170,7 @@ function renderLgaLeaderboard(el: HTMLElement): void {
               <td class="mono">${formatNumber(e.population)}</td>
               <td class="mono">${formatNumber(e.count)}</td>
               <td class="mono"><strong>${formatRate(e.rate, 0)}</strong></td>
-              <td class="bar-cell">
+              <td class="bar-cell" data-tip="${e.name} — ${catLabel} (${LATEST_YEAR}): ${formatRate(e.rate, 0)} per 100K — ${formatNumber(e.count)} offences" aria-label="${e.name} — ${catLabel} (${LATEST_YEAR}): ${formatRate(e.rate, 0)} per 100K — ${formatNumber(e.count)} offences">
                 <div class="mini-bar" style="width:${pct}%;background:var(--accent-primary)"></div>
               </td>
               <td class="mono ${vsMed > 0 ? 'change-up' : 'change-down'}">${formatPercent(vsMed)}</td>

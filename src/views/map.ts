@@ -144,6 +144,10 @@ function updateMapMarkers(): void {
     }).addTo(mapInstance!);
 
     const catLabel = selectedCategory === 'total' ? 'All Offences' : CATEGORY_MAP[selectedCategory]?.label || selectedCategory;
+    marker.bindTooltip(
+      `${STATE_NAMES[state]} — ${catLabel} (${LATEST_YEAR}): ${formatRate(rate, 0)} per 100K — ${formatNumber(count)} offences`,
+      { sticky: true }
+    );
     marker.bindPopup(`
       <div style="font-family:var(--font-sans);min-width:160px">
         <strong>${STATE_NAMES[state]}</strong><br/>

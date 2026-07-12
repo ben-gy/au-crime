@@ -83,10 +83,11 @@ export function renderByState(container: HTMLElement, stateCode?: string): void 
             ${catBreakdown.map(c => {
               const pct = (c.rate / maxCatRate) * 100;
               const catYoy = percentChange(c.prevRate, c.rate);
+              const tip = `${c.label} (${LATEST_YEAR}): ${formatRate(c.rate, 0)} per 100K — ${formatNumber(c.count)} offences, ${formatPercent(catYoy)} YoY`;
               return `
                 <div class="cat-row">
                   <div class="cat-label">${glossarySpan(c.label)}</div>
-                  <div class="bar-track">
+                  <div class="bar-track" data-tip="${tip}" aria-label="${tip}">
                     <div class="bar-fill" style="width:${pct}%;background:${c.color}"></div>
                   </div>
                   <div class="cat-values">
@@ -186,10 +187,10 @@ function renderTrendChart(containerId: string, data: { year: number; rate: numbe
       </defs>
       <path d="${areaPath}" fill="url(#areaGrad-${containerId})"/>
       <path d="${linePath}" fill="none" stroke="${color}" stroke-width="2.5"/>
-      ${data.map((d, i) => `
-        <circle cx="${x(i).toFixed(1)}" cy="${y(d.rate).toFixed(1)}" r="3.5" fill="${color}" stroke="var(--bg-panel)" stroke-width="1.5"/>
-        <title>${d.year}: ${formatRate(d.rate, 0)} per 100K</title>
-      `).join('')}
+      ${data.map((d, i) => {
+        const tip = `${d.year}: ${formatRate(d.rate, 0)} per 100K`;
+        return `<circle cx="${x(i).toFixed(1)}" cy="${y(d.rate).toFixed(1)}" r="3.5" fill="${color}" stroke="var(--bg-panel)" stroke-width="1.5" data-tip="${tip}" aria-label="${tip}"/>`;
+      }).join('')}
       ${data.filter((_, i) => i % 2 === 0 || i === data.length - 1).map((d) => {
         const i = data.indexOf(d);
         return `<text x="${x(i).toFixed(1)}" y="${h - 5}" text-anchor="middle" class="axis-label">${d.year}</text>`;

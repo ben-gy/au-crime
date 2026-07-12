@@ -104,10 +104,11 @@ export function renderOverview(container: HTMLElement): void {
   if (barsContainer) {
     barsContainer.innerHTML = summaries.map(s => {
       const pct = (s.ratePer100k / maxStateRate) * 100;
+      const tip = `${STATE_NAMES[s.state]} (${LATEST_YEAR}): ${formatRate(s.ratePer100k, 0)} per 100K — ${formatNumber(s.totalOffences)} offences, ${formatPercent(s.yoyChange)} YoY`;
       return `
         <div class="bar-row clickable-row" data-state="${s.state}">
           <div class="bar-label">${s.state}</div>
-          <div class="bar-track">
+          <div class="bar-track" data-tip="${tip}" aria-label="${tip}">
             <div class="bar-fill" style="width:${pct}%;background:${STATE_COLORS[s.state]}"></div>
           </div>
           <div class="bar-value">${formatRate(s.ratePer100k, 0)}</div>
@@ -122,10 +123,11 @@ export function renderOverview(container: HTMLElement): void {
     const maxCatCount = catBreakdown[0].count;
     catList.innerHTML = catBreakdown.map(c => {
       const pct = (c.count / maxCatCount) * 100;
+      const tip = `${c.label} (${LATEST_YEAR}): ${formatNumber(c.count)} offences — ${formatRate(c.rate, 0)} per 100K`;
       return `
         <div class="cat-row">
           <div class="cat-label">${glossarySpan(c.label)}</div>
-          <div class="bar-track">
+          <div class="bar-track" data-tip="${tip}" aria-label="${tip}">
             <div class="bar-fill" style="width:${pct}%;background:${c.color}"></div>
           </div>
           <div class="cat-values">

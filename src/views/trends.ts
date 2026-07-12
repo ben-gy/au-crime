@@ -110,7 +110,8 @@ function renderChart(): void {
 
     const dots = YEARS.map((yr, i) => {
       const rate = getRate(state, yr, config.selectedCategory);
-      return `<circle cx="${x(i).toFixed(1)}" cy="${y(rate).toFixed(1)}" r="3" fill="${STATE_COLORS[state]}" stroke="var(--bg-panel)" stroke-width="1.5"><title>${state} ${yr}: ${formatRate(rate, 0)} per 100K</title></circle>`;
+      const tip = `${state} ${yr}: ${formatRate(rate, 0)} per 100K`;
+      return `<circle cx="${x(i).toFixed(1)}" cy="${y(rate).toFixed(1)}" r="3" fill="${STATE_COLORS[state]}" stroke="var(--bg-panel)" stroke-width="1.5" data-tip="${tip}" aria-label="${tip}"></circle>`;
     }).join('');
 
     const lastRate = getRate(state, YEARS[YEARS.length - 1], config.selectedCategory);

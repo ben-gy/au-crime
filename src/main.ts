@@ -1,4 +1,5 @@
 import { initTooltips, showAboutModal } from './tooltip';
+import { initTooltip } from './hoverTip';
 import { renderOverview } from './views/overview';
 import { renderByState } from './views/by-state';
 import { renderByCategory } from './views/by-category';
@@ -563,6 +564,23 @@ body {
   line-height: 1.5;
 }
 
+/* Hover tooltips ([data-tip]) */
+.hover-tip {
+  position: fixed;
+  z-index: 2000;
+  max-width: 300px;
+  background: var(--text-primary);
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 100ms;
+}
+.hover-tip.visible { opacity: 1; }
+
 /* About modal */
 .modal-overlay {
   position: fixed;
@@ -682,7 +700,7 @@ function createApp(): void {
     <header class="site-header">
       <h1>Crime Statistics (AU) <span>${LATEST_YEAR} data</span></h1>
       <div class="header-right">
-        <button class="about-btn" id="about-btn" aria-label="About this site" title="About this site">?</button>
+        <button class="about-btn" id="about-btn" aria-label="About this site" data-tip="About this site">?</button>
       </div>
     </header>
     <nav class="nav-tabs" id="nav-tabs">
@@ -696,6 +714,7 @@ function createApp(): void {
   `;
 
   initTooltips();
+  initTooltip();
 
   document.getElementById('about-btn')?.addEventListener('click', showAboutModal);
 

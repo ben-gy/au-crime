@@ -90,11 +90,10 @@ export function renderMatrix(container: HTMLElement): void {
 
       // Interpolate opacity based on normalized value
       const opacity = 0.15 + cell.normalized * 0.75;
+      const tip = `${STATE_NAMES[row.state]}: ${CATEGORY_MAP[cell.cat].label} — ${formatRate(cell.rate)} per 100K`;
 
       svgContent += `
-        <rect x="${x}" y="${y}" width="${cellW - 1}" height="${cellH - 1}" rx="3" fill="${catColor}" opacity="${opacity.toFixed(2)}" class="matrix-cell">
-          <title>${STATE_NAMES[row.state]}: ${CATEGORY_MAP[cell.cat].label} — ${formatRate(cell.rate)} per 100K</title>
-        </rect>
+        <rect x="${x}" y="${y}" width="${cellW - 1}" height="${cellH - 1}" rx="3" fill="${catColor}" opacity="${opacity.toFixed(2)}" class="matrix-cell" data-tip="${tip}" aria-label="${tip}"></rect>
         <text x="${x + cellW / 2}" y="${y + cellH / 2 + 4}" text-anchor="middle" class="matrix-value">${formatRate(cell.rate, 0)}</text>
       `;
     }
