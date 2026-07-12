@@ -691,7 +691,7 @@ function createApp(): void {
     <main class="main-content" id="main-content"></main>
     <footer class="site-footer">
       Data: ABS Recorded Crime, BOCSAR, state police agencies &middot; Rates per 100,000 ERP &middot;
-      Built by <a href="https://benrichardson.dev/">benrichardson.dev</a>
+      Built by <a href="https://benrichardson.dev/">benrichardson.dev</a> · <a href="https://hub.benrichardson.dev" target="_blank" rel="noopener">more tools &amp; sites</a>
     </footer>
   `;
 
