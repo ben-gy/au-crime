@@ -1,3 +1,8 @@
+// feedback:begin (managed by hub/scripts/feedback/backfill.mjs)
+import { mountFeedback } from './feedback';
+mountFeedback();
+// feedback:end
+
 import { initTooltips, showAboutModal } from './tooltip';
 import { initTooltip } from './hoverTip';
 import { renderOverview } from './views/overview';
