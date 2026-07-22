@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Ben Richardson — https://benrichardson.dev
+// Additional terms under AGPL-3.0 section 7(b) apply; see ADDITIONAL-TERMS.md.
 // Crime Statistics (AU) — Embedded national crime data
 // Based on ABS Recorded Crime – Victims (Cat. 4510.0) published statistics
 // Pipeline updates public/data/national.json with fresh data
